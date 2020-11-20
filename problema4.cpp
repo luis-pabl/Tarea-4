@@ -43,63 +43,119 @@ public:
   }
 };
 class Area:public Dimensiones{
+  float rec;
+  float cuad;
+  float tria;
+  float circ;
 public:
-  float rectangulo(){
-    float f=lado*lado2;
-    return f;
+  void rectangulo(){
+    rec=lado*lado2;
   }
-  float cuadrado(){
-    float f=lado*lado;
-    return f;
+void cuadrado(){
+    cuad=lado*lado;
   }
-  float triangulo(){
+void triangulo(){
     float s=valor_s();
-    float f=sqrt(s*(s-lado)*(s-lado)*(s-lado));
-    return f;
+    tria=sqrt(s*(s-lado)*(s-lado)*(s-lado));
   }
-  float circulo(){
-    float f=pi*radio*radio;
-    return f;
+void circulo(){
+    circ=pi*radio*radio;
+  }
+  float rectan(){
+    rectangulo();
+    return ret_rectangulo();
+  }
+  float cuadra(){
+    cuadrado();
+    return ret_cuadrado();
+  }
+  float triang(){
+    triangulo();
+    return ret_triangulo();
+  }
+  float circu(){
+    circulo();
+    return ret_circulo();
+  }
+  float ret_rectangulo(){
+    return rec;
+  }
+  float ret_cuadrado(){
+    return cuad;
+  }
+  float ret_triangulo(){
+    return tria;
+  }
+  float ret_circulo(){
+    return circ;
   }
   void todo_area(){
     cout<<"Areas: "<<endl;
-    area=rectangulo();
+    area=rectan();
     cout<<"Rectangulo: "<<res_area()<<"m^2"<<endl;
-    area=cuadrado();
+    area=cuadra();
     cout<<"Cuadrado: "<<res_area()<<"m^2"<<endl;
-    area=triangulo();
+    area=triang();
     cout<<"Triangulo: "<<res_area()<<"m^2"<<endl;
-    area=circulo();
+    area=circu();
     cout<<"Circulo: "<<res_area()<<"m^2"<<endl<<endl;
   }
 };
 class Perimetro:public Dimensiones{
+  float rec;
+  float cuad;
+  float tria;
+  float circ;
 public:
-  float rectangulo(){
-    float f=lado*2+lado2*2;
-    return f;
+  void rectangulo(){
+    rec=lado*2+lado2*2;
   }
-  float cuadrado(){
-    float f=lado*4;
-    return f;
+  void cuadrado(){
+    cuad=lado*4;
   }
-  float triangulo(){
-    float f=lado*3;
-    return f;
+  void triangulo(){
+    tria=lado*3;
   }
-  float circulo(){
-    float f=pi*radio*2;
-    return f;
+  void circulo(){
+    circ=pi*radio*2;
+  }
+  float rectan(){
+    rectangulo();
+    return ret_rectangulo();
+  }
+  float cuadra(){
+    cuadrado();
+    return ret_cuadrado();
+  }
+  float triang(){
+    triangulo();
+    return ret_triangulo();
+  }
+  float circu(){
+    circulo();
+    return ret_circulo();
+  }
+  float ret_rectangulo(){
+    return rec;
+  }
+  float ret_cuadrado(){
+    return cuad;
+  }
+  float ret_triangulo(){
+    return tria;
+  }
+  float ret_circulo(){
+    return circ;
   }
   void todo_peri(){
     cout<<"Perimetros: "<<endl;
-    perimetro=rectangulo();
+    perimetro=rectan();
     cout<<"Rectangulo: "<<res_peri()<<"m"<<endl;
-    perimetro=cuadrado();
+    perimetro=cuadra();
     cout<<"Cuadrado: "<<res_peri()<<"m"<<endl;
-    perimetro=triangulo();
+    perimetro=triang();
     cout<<"Triangulo: "<<res_peri()<<"m"<<endl;
-    perimetro=circulo();
+    perimetro=circu();
     cout<<"Circulo: "<<res_peri()<<"m"<<endl<<endl;
   }
 };

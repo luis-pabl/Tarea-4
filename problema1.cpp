@@ -20,6 +20,13 @@ public:
     float resultado(){
       return equivalencia;
     }
+    void imprime_serie_para(int n){
+      cout<<"Las Resistencias son:"<<endl;
+      for(int i=0;  i<n ; i++){
+      cout<<"R"<<i+1<<"="<<1<<"ohm ";
+      }
+      cout<<endl<<endl;
+    }
 };
 class Serie:public Circuito{
 public:
@@ -43,13 +50,13 @@ class Mixto:public Circuito{
       cin>>r[i];
     }
   }
-  void imprime_matriz(int n){
+  void imprime(int n){
+    cout<<"Las Resistencias son:"<<endl;
     for(int i=0;  i<n ; i++){
-      printf("%.1f ",r[i]);
+    cout<<"R"<<i+1<<"="<<r[i]<<"ohm ";
     }
-    cout<<endl;
+    cout<<endl<<endl;
   }
-
   void pri_serie(int n){
     char a;
     float aux=0;
@@ -62,11 +69,8 @@ class Mixto:public Circuito{
         cout<<"Dime la resistencia"<<endl;
         cin>>i;
         aux+=r[i-1];
-        cout<<"valor de r["<<i-1<<"]: "<<r[i-1]<<endl;
-        cout<<"Valor de aux: "<<aux<<endl;
         r[i-1]=0;
-        cout<<"valor de r["<<i-1<<"]: "<<r[i-1]<<endl;
-        cout<<"vas a seguir metiendo valores:"<<endl;
+        cout<<"vas a seguir metiendo valores:s/n"<<endl;
         cin>>b;
         if(b=='n')
         r[i-1]=aux;
@@ -77,7 +81,6 @@ class Mixto:public Circuito{
     for(int i=0;i<n;i++){
       if(r[i]!=0){
         r[i]=(1/r[i]);
-        cout<<"valor de r["<<i<<"]: "<<r[i]<<endl;
       }
     }
     equivalencia=0;
@@ -98,11 +101,8 @@ class Mixto:public Circuito{
         cout<<"Dime la Resistencia"<<endl;
         cin>>i;
         aux+=1/r[i-1];
-        cout<<"valor de r["<<i-1<<"]: "<<r[i-1]<<endl;
-        cout<<"Valor de aux: "<<aux<<endl;
         r[i-1]=0;
-        cout<<"valor de r["<<i-1<<"]: "<<r[i-1]<<endl;
-        cout<<"vas a seguir metiendo valores:"<<endl;
+        cout<<"vas a seguir metiendo valores:s/n"<<endl;
         cin>>b;
         if(b=='n')
         r[i-1]=1/aux;
@@ -117,17 +117,12 @@ class Mixto:public Circuito{
   }
   void suma_resis(int n){
     char b;
-    char a;
-    do{
       cout<<"Dime si tu Circuito tiene mas Resistencias en Paraleolo o en Serie, s/p"<<endl;
       cin>>b;
       if(b=='s')
       pri_serie(n);
       else
       pri_paralelo(n);
-      cout<<"Necesitas usar alguno de los otra vez s/n"<<endl;
-      cin>>a;
-    }while(a!='n');
   }
 };
 /////////////////////////
@@ -138,6 +133,7 @@ int main(){
   Serie b;
   Paralelo c;
   Mixto d;
+  a.imprime_serie_para(5);
   a.equivalencia=b.suma_resis(1,1,1,1,1);
   cout<<"El valor de la equivalencia en serie es: "<<a.resultado()<<endl;
   a.equivalencia=c.suma_resis(1,1,1,1,1);
@@ -146,7 +142,7 @@ int main(){
   cout<<"Cuantas Resistencia hay en el circuito"<<endl;
   cin>>n;
   d.iniciar_resist(n);
-  d.imprime_matriz(n);
+  d.imprime(n);
   d.suma_resis(n);
-  cout<<"El valor de la equivalencia en mixto es: "<<d.resultado()<<endl;
+  cout<<"El valor de la equivalencia en mixto es: "<<d.resultado()<<"ohm"<<endl;
 }

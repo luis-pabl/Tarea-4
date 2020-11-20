@@ -22,42 +22,79 @@ public:
   float vs2=23;
 };
 class Poste:public Transformador{
+  float lp;
+  float ls;
 public:
-  float co_pri(float kVA){
-    float lp=0;
+  void co_pri2(float kVA){
     lp=kVA/(sqrt(3)*1000*vp1);
-    return lp;
+  }
+  void co_sec2(float kVA){
+    ls=kVA/(sqrt(3)*1000*vs1);
+  }
+  float co_pri(float kVA){
+      co_pri2(kVA);
+      return get_prin();
   }
   float co_sec(float kVA){
-    float lp=0;
-    lp=kVA/(sqrt(3)*1000*vs1);
-    return lp;
+      co_sec2(kVA);
+      return get_sec();
+  }
+  float get_prin(){
+      return lp;
+  }
+  float get_sec(){
+      return ls;
   }
 };
 class Pedestal:public Transformador{
+  float lp;
+  float ls;
 public:
-  float co_pri(float kVA){
-    float lp=0;
+  void co_pri2(float kVA){
     lp=kVA/(sqrt(3)*1000*vp1);
-    return lp;
+  }
+  void co_sec2(float kVA){
+    ls=kVA/(sqrt(3)*1000*vs1);
+  }
+  float co_pri(float kVA){
+      co_pri2(kVA);
+      return get_prin();
   }
   float co_sec(float kVA){
-    float lp=0;
-    lp=kVA/(sqrt(3)*1000*vs1);
-    return lp;
+      co_sec2(kVA);
+      return get_sec();
+  }
+  float get_prin(){
+      return lp;
+  }
+  float get_sec(){
+      return ls;
   }
 };
 class Potencia:public Transformador{
+  float lp;
+  float ls;
 public:
-  float co_pri(float kVA){
-    float lp=0;
+  void co_pri2(float kVA){
     lp=kVA/(sqrt(3)*1000*vp2);
-    return lp;
+  }
+  //auto completador de codigo, generedor de seters y geters atom
+  void co_sec2(float kVA){
+    ls=kVA/(sqrt(3)*1000*vs2);
+  }
+  float co_pri(float kVA){
+      co_pri2(kVA);
+      return get_prin();
+  }
+  float get_prin(){
+      return lp;
+  }
+  float get_sec(){
+      return ls;
   }
   float co_sec(float kVA){
-    float lp=0;
-    lp=kVA/(sqrt(3)*1000*vs2);
-    return lp;
+      co_sec2(kVA);
+      return get_sec();
   }
 };
 void todo(Poste b,Pedestal c, Potencia d);
@@ -70,7 +107,6 @@ int main(){
   Pedestal c;
   Potencia d;
   todo(b,c,d);
-
 }
 void todo(Poste b,Pedestal c, Potencia d){
   char n;
